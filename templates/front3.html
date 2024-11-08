@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Tracking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #086dd1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: black;
+            font-size: 40px;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .flex-box {
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .flex-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .icon-and-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-and-text i {
+            font-size: 30px;
+            color: rgb(247, 8, 8);
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .icon-and-text h3 {
+            margin: 0;
+            margin-right: 10px;
+        }
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            .flex-box {
+                width: 150px;
+                height: 150px;
+                font-size: 16px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            h1 {
+                font-size: 24px;
+            }
+            .flex-box {
+                width: 120px;
+                height: 120px;
+                font-size: 14px;
+            }
+            .flex-box i {
+                font-size: 36px;
+            }
+            .icon-and-text i {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>BED-TRACKING</h1>
+    <div class="flex-container">
+        {% for room, data in rooms_data.items() %}
+        <div class="flex-box" onclick="location.href='/index?ward={{ room }}'">
+            <div class="icon-and-text">
+                <i class="fa {{ data.icon }}"></i>
+                <h3>{{ room }}</h3>
+            </div>
+            <div>{{ data.vacants }} Vacant Beds</div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

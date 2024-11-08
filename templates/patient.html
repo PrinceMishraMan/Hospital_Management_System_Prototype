@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <title>Patient Record</title>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h2>Your Patients</h2>
+
+        {% if all_patients|length == 0 %}
+        <div class="alert alert-dark" role="alert">
+            No patients found. Add your first patient.
+        </div>
+        {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Bed No.</th>
+                    <th scope="col">Ward Name</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Disease Diagnosed</th>
+                    <th scope="col">Time of Admission</th>
+                    <th scope="col">Appointed Doctor</th>
+                    <th scope="col">Treatment to be provided</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient_record in all_patients %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ patient_record.ward }}</td>
+                    <td>{{ patient_record.patient_id}}</td>
+                    <td>{{ patient_record.patient_name }}</td>
+                    <td>{{ patient_record.disease_diagnosed }}</td>
+                    <td>{{ patient_record.time_of_admission.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ patient_record.doctor_name }}</td>
+                    <td>{{ patient_record.treatment }}</td>
+                    <td>
+                        <a href="/update/{{ patient_record.sno }}" type="button"
+                            class="btn btn-outline-dark btn-sm mx-1">Update</a>
+                        <a href="/delete/{{ patient_record.sno }}" type="button"
+                            class="btn btn-outline-dark btn-sm mx-1">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

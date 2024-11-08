@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Inventory</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Medicine Inventory</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-warning">
+                    {% for category, message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h2 class="mt-5">Add New Medicine</h2>
+        <form action="{{ url_for('medicine') }}" method="POST">
+            <div class="form-group">
+                <label for="drug_name">Drug Name:</label>
+                <input type="text" class="form-control" id="drug_name" name="drug_name" required>
+            </div>
+            <div class="form-group">
+                <label for="batch_no">Batch No.:</label>
+                <input type="text" class="form-control" id="batch_no" name="batch_no" required>
+            </div>
+            <div class="form-group">
+                <label for="manufacture_date">Manufacture Date:</label>
+                <input type="date" class="form-control" id="manufacture_date" name="manufacture_date" required>
+            </div>
+            <div class="form-group">
+                <label for="expire_date">Expire Date:</label>
+                <input type="date" class="form-control" id="expire_date" name="expire_date" required>
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" class="form-control" id="stock" name="stock" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Medicine</button>
+        </form>
+
+        <h2 class="mt-4">Current Stock</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Batch No.</th>
+                    <th>Manufacture Date</th>
+                    <th>Expire Date</th>
+                    <th>Stock</th>
+                    <th>Expire Check</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicine %}
+                <tr>
+                    <!-- <th scope="row">{{ loop.index }}</th> -->
+                    <td>{{ medicine.drug_name }}</td>
+                    <td>{{ medicine.batch_no }}</td>
+                    <td>{{ medicine.manufacture_date }}</td>
+                    <td>{{ medicine.expire_date }}</td>
+                    <td>{{ medicine.stock }}</td>
+                    <td>{{ medicine.expire_check }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="mt-5">Billing</h2>
+        <form action="{{ url_for('medicine') }}" method="POST">
+            <div class="form-group">
+                <label for="medicine_name">Medicine Name:</label>
+                <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <button type="submit" class="btn btn-success">Process Billing</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

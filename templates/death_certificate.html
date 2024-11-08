@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Certificate</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 2px solid #ddd;
+        }
+        form {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        td {
+            padding: 10px 0;
+        }
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0a500;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffcc33;
+        }
+        .checkbox-label {
+            font-size: 14px;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Death Certificate Form</h1>
+        <hr>
+        <h2>Deceased Information</h2>
+        <form method="POST" action="/generate_death_certificate">
+            <table>
+                <tr>
+                    <td>Name of Deceased:</td>
+                    <td colspan="3">
+                        <input type="text" name="deceased_name" placeholder="Enter the name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td colspan="3">
+                        <input type="number" name="age" placeholder="Enter age" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of Death:</td>
+                    <td colspan="3">
+                        <input type="date" name="date_of_death" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time of Death:</td>
+                    <td colspan="3">
+                        <input type="time" name="time_of_death" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Place of Death:</td>
+                    <td colspan="3">
+                        <input type="text" name="place_of_death" placeholder="City, State" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cause of Death:</td>
+                    <td colspan="3">
+                        <input type="text" name="cause_of_death" placeholder="Cause of death" required>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="4">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required> I certify that the information provided is accurate to the best of my knowledge.
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

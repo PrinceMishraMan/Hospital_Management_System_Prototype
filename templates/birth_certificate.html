@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Certificate</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 2px solid #ddd;
+        }
+        form {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        td {
+            padding: 10px 0;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0a500;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffcc33;
+        }
+        .checkbox-label {
+            font-size: 14px;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birth Certificate Form</h1>
+        <hr>
+        <h2>Child Information</h2>
+        <form method="POST" action="/generate_birth_certificate">
+            <table>
+                <tr>
+                    <td>Child's Name:</td>
+                    <td colspan="3">
+                        <input type="text" name="child_name" placeholder="Enter the child's name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td colspan="3">
+                        <input type="date" name="dob" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Place of Birth:</td>
+                    <td colspan="3">
+                        <input type="text" name="birth_place" placeholder="City, State" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mother's Name:</td>
+                    <td colspan="3">
+                        <input type="text" name="mother_name" placeholder="Mother's full name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Weight:</td>
+                    <td colspan="3">
+                        <input type="text" name="weight" placeholder="Enter the child's weight (in kg)" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sex:</td>
+                    <td colspan="3">
+                        <select name="sex" required>
+                            <option value="" disabled selected>Select the child's sex</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Father's Name:</td>
+                    <td colspan="3">
+                        <input type="text" name="father_name" placeholder="Father's full name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td colspan="3">
+                        <input type="text" name="address" placeholder="Full address" required>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td colspan="4">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required> I certify that the information provided is accurate to the best of my knowledge.
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

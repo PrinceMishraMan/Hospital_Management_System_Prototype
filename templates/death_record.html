@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Record</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h2>Death Records</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Deceased Name</th>
+                    <th>Certificate ID</th>
+                    <th>Time of Death</th>
+                    <th>Date of Death</th>
+                    <th>Place of Death</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for death in all_deaths %}
+                <tr>
+                    <td>{{ death.name }}</td>
+                    <td>{{ death.certificate_id }}</td>
+                    <td>{{ death.time_of_death }}</td>
+                    <td>{{ death.date_of_death }}</td>
+                    <td>{{ death.place_of_death }}</td>
+                    <td>{{ death.age }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>

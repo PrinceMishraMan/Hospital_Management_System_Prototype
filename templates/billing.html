@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Statement</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bill-section {
+            margin-top: 50px;
+        }
+
+        .bill-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .bill-label {
+            font-weight: bold;
+        }
+
+        .bill-input {
+            background-color: #d3d3d3;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .btn-enter {
+            width: 100%;
+            background-color: #a9a9a9;
+            border: none;
+            color: black;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .bill-table th,
+        .bill-table td {
+            background-color: #a9a9a9;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .total-amount {
+            float: right;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #d3d3d3;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container bill-section">
+        <div class="bill-header">
+            <h2>BILLING STATEMENT</h2>
+        </div>
+        <form action="{{ url_for('bill') }}" method="POST">
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="bill" class="bill-label">PATIENT'S ID</label>
+                    <div class="bill-input">
+                        <input class="bill-input" type="text" name="patient_id" id="bill" placeholder="Enter Patient's ID" required>
+                    </div>
+                </div>
+                <!-- <div class="col-md-5 offset-md-2">
+                <label class="bill-label">DATE</label>
+                <div class="bill-input"></div>
+            </div> -->
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2 offset-md-5">
+                    <button type="submit" class="btn-enter">ENTER</button>
+                </div>
+            </div>
+        </form>
+        <table class="table bill-table mt-5">
+            <thead>
+                <tr>
+                    <th>Patients Name</th>
+                    <th>Treatment</th>
+                    <th>Doctors Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if patient and bill %}
+                <tr>
+                    <td>{{ patient.title }}</td>
+                    <td>{{ patient.treat }}</td>
+                    <td>{{ patient.doctor }}</td>
+                    <td>${{ bill_record.price }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="total-amount">
+            <span>Total Payable Amt</span>
+            <span class="bill-input"></span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

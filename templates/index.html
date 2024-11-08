@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} Home{% endblock title %}
+{% block body %}
+
+    <div class="container my-3">
+        <h2>Patient Admission</h2>
+        <form action="/index" method="POST" autocomplete="off">
+            <div class="mb-3">
+              <label for="patient_name" class="form-label">Patient Name</label>
+              <input type="text" class="form-control" name="patient_name" id="patient_name" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+            <label for="doctor_name">Select Doctor</label>
+            <select class="form-select" name="doctor_name" id="doctor_name" required>
+                <option value="" disabled selected>Select a doctor</option>
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.name }}">{{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+    <label for="ward">Select Ward</label>
+    <select class="form-select" name="ward" id="ward" required>
+        <option value="" disabled {% if not selected_ward %}selected{% endif %}>Select a ward</option>
+        {% for ward in wards %}
+            <option value="{{ ward }}" {% if selected_ward == ward %}selected{% endif %}>{{ ward }}</option>
+        {% endfor %}
+    </select>
+</div>
+        <div class="mb-3">
+            <label for="initial_deposit" class="form-label">Initial Deposit</label>
+            <input type="number" class="form-control" name="initial_deposit" id="initial_deposit" step="0.01">
+        </div>
+            <div class="mb-3">
+              <label for="disease_diagnosed" class="form-label">Disease Diagnosed</label>
+              <input type="text" class="form-control" name="disease_diagnosed" id="disease_diagnosed" required>
+            </div>
+            <div class="mb-3">
+              <label for="treatment" class="form-label">Treatment to be provided</label>
+              <input type="text" class="form-control" name="treatment" id="treatment" required>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+
+{% endblock body %}

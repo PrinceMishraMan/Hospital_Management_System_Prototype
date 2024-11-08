@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Record</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h2>Birth Records</h2>
+        <table class="table table-bordered table-striped mb-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Child's Name</th>
+                    <th>Certificate ID</th>
+                    <th>Mother's Name</th>
+                    <th>Father's Name</th>
+                    <th>Date of Birth</th>
+                    <th>Place of Birth</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for birth in all_births %}
+                <tr>
+                    <td>{{ birth.name }}</td>
+                    <td>{{ birth.certificate_id }}</td>
+                    <td>{{ birth.mother_name }}</td>
+                    <td>{{ birth.father_name }}</td>
+                    <td>{{ birth.date_of_birth }}</td>
+                    <td>{{ birth.place_of_birth }}</td>
+                    <td>{{ birth.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</body>
+</html>
